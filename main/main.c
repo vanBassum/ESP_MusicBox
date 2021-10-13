@@ -24,6 +24,8 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
 
+#define  CONFIG_LV_FONT_DEFAULT &lv_font_montserrat_16
+
 
 /*********************
  *      DEFINES
