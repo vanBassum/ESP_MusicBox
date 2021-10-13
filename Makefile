@@ -3,6 +3,6 @@
 # project subdirectory.
 #
 
-PROJECT_NAME := blink
+PROJECT_NAME := music
 EXTRA_COMPONENT_DIRS := components/lvgl_esp32_drivers/lvgl_tft components/lvgl_esp32_drivers/lvgl_touch
 include $(IDF_PATH)/make/project.mk
