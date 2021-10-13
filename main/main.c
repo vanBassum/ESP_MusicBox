@@ -24,7 +24,6 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
 
-#include "lv_examples/src/lv_demo_widgets/lv_demo_widgets.h"
 
 /*********************
  *      DEFINES
@@ -60,6 +59,65 @@ static void lv_tick_task(void *arg) {
 //you should lock on the very same semaphore!
 SemaphoreHandle_t xGuiSemaphore;
 
+
+
+static void btn_event_cb(lv_obj_t * btn, lv_event_t event)
+{
+	if (event == LV_EVENT_CLICKED) {
+		static uint8_t cnt = 0;
+		cnt++;
+
+		/*Get the first child of the button which is the label and change its text*/
+		lv_obj_t * label = lv_obj_get_child(btn, NULL);
+		lv_label_set_text_fmt(label, "Button: %d", cnt);
+	}
+}
+
+/**
+ * Create a button with a label and react on Click event.
+ */
+void lv_ex_get_started_1(void)
+{
+	lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);     /*Add a button the current screen*/
+	lv_obj_set_pos(btn, 10, 10);                            /*Set its position*/
+	lv_obj_set_size(btn, 120, 50);                          /*Set its size*/
+	lv_obj_set_event_cb(btn, btn_event_cb);                 /*Assign a callback to the button*/
+
+	lv_obj_t * label = lv_label_create(btn, NULL);          /*Add a label to the button*/
+	lv_label_set_text(label, "Button");                     /*Set the labels text*/
+}
+
+
+
+static void btn_event_cb2(lv_obj_t * btn, lv_event_t event)
+{
+	if (event == LV_EVENT_CLICKED) {
+		static uint8_t cnt = 0;
+		cnt++;
+
+		/*Get the first child of the button which is the label and change its text*/
+		lv_obj_t * label = lv_obj_get_child(btn, NULL);
+		lv_label_set_text_fmt(label, "Button: %d", cnt);
+	}
+}
+
+/**
+ * Create a button with a label and react on Click event.
+ */
+void lv_ex_get_started_2(void)
+{
+	lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);     /*Add a button the current screen*/
+	lv_obj_set_pos(btn, 240, 0);                            /*Set its position*/
+	lv_obj_set_size(btn, 120, 50);                          /*Set its size*/
+	lv_obj_set_event_cb(btn, btn_event_cb2);                /*Assign a callback to the button*/
+
+	lv_obj_t * label = lv_label_create(btn, NULL);          /*Add a label to the button*/
+	lv_label_set_text(label, "Button");                     /*Set the labels text*/
+}
+
+
+
+
 void guiTask(void *pvParameter) {
     
     (void) pvParameter;
@@ -78,24 +136,13 @@ void guiTask(void *pvParameter) {
 
     uint32_t size_in_px = DISP_BUF_SIZE;
 
-#if defined CONFIG_LVGL_TFT_DISPLAY_CONTROLLER_IL3820 
-    /* Actual size in pixel, not bytes and use single buffer */
-    size_in_px *= 8;
-    lv_disp_buf_init(&disp_buf, buf1, NULL, size_in_px);
-#elif defined CONFIG_LVGL_TFT_DISPLAY_MONOCHROME
-    lv_disp_buf_init(&disp_buf, buf1, NULL, size_in_px);
-#else
-    lv_disp_buf_init(&disp_buf, buf1, buf2, size_in_px);
-#endif
+	lv_disp_buf_init(&disp_buf, buf1, buf2, size_in_px);
 
     lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
     disp_drv.flush_cb = disp_driver_flush;
 
-#ifdef CONFIG_LVGL_TFT_DISPLAY_MONOCHROME
-    disp_drv.rounder_cb = disp_driver_rounder;
-    disp_drv.set_px_cb = disp_driver_set_px;
-#endif
+
 
     disp_drv.buffer = &disp_buf;
     lv_disp_drv_register(&disp_drv);
@@ -116,26 +163,8 @@ void guiTask(void *pvParameter) {
     ESP_ERROR_CHECK(esp_timer_create(&periodic_timer_args, &periodic_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(periodic_timer, LV_TICK_PERIOD_MS * 1000));
 
-#if defined CONFIG_LVGL_TFT_DISPLAY_MONOCHROME || \
-    defined CONFIG_LVGL_TFT_DISPLAY_CONTROLLER_ST7735S
-    
-    /* use a pretty small demo for monochrome displays */
-    /* Get the current screen  */
-    lv_obj_t * scr = lv_disp_get_scr_act(NULL);
-
-    /*Create a Label on the currently active screen*/
-    lv_obj_t * label1 =  lv_label_create(scr, NULL);
-
-    /*Modify the Label's text*/
-    lv_label_set_text(label1, "Hello\nworld!");
-
-    /* Align the Label to the center
-     * NULL means align on parent (which is the screen now)
-     * 0, 0 at the end means an x, y offset after alignment*/
-    lv_obj_align(label1, NULL, LV_ALIGN_CENTER, 0, 0);
-#else
-    lv_demo_widgets();
-#endif
+	lv_ex_get_started_1();
+	lv_ex_get_started_2();
     
     while (1) {
         vTaskDelay(1);
