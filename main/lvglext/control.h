@@ -16,6 +16,11 @@ namespace LVGL
 	protected:
 		lv_obj_t* handle = NULL;
 		
+	public:
+		lv_obj_t* GetHandle()
+		{
+			return handle;
+		}
 		
 	};
 }

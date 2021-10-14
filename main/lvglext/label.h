@@ -15,7 +15,7 @@ namespace LVGL
 		Label(Control& parent)
 		{
 			lvglMutex->Take();
-			handle = lv_label_create(parent.handle, NULL);
+			handle = lv_label_create(parent.GetHandle(), NULL);
 			lv_label_set_text(handle, "Label");    
 			lv_obj_set_size(handle, 120, 50);
 			lvglMutex->Give();
