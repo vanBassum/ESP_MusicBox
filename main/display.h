@@ -5,6 +5,7 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
 #include "lib/FreeRTOS.h"
+#include "esp_log.h"
 
 
 #define LV_TICK_PERIOD_MS 10
@@ -27,6 +28,7 @@ class Display
 	{
 		lvglMutex.Take();
 
+		ESP_LOGI("Display", "Screen initializing");
         lv_init();
         lvgl_driver_init();
 
@@ -40,8 +42,16 @@ class Display
         disp_drv.flush_cb = disp_driver_flush;
         disp_drv.buffer = &disp_buf;
         lv_disp_drv_register(&disp_drv);
-        lvglMutex.Give();
 		
+		lv_obj_t* btn = lv_btn_create(lv_scr_act(), NULL);     /*Add a button the current screen*/
+		lv_obj_set_pos(btn, 10, 10);                            /*Set its position*/
+		lv_obj_set_size(btn, 120, 50);                          /*Set its size*/
+		lv_obj_t* label = lv_label_create(btn, NULL);          /*Add a label to the button*/
+		lv_label_set_text(label, "Button");                     /*Set the labels text*/
+		
+		
+        lvglMutex.Give();
+		ESP_LOGI("Display", "Screen initialized");
         while (1) 
         {
             vTaskDelay(1);

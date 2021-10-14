@@ -14,6 +14,7 @@ void app_main()
 {
     Display display;
 
+	//display.Test();
 
     while(1)
         vTaskDelay(1000);
