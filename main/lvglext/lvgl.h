@@ -1,5 +1,6 @@
 #pragma once
 
+#define LV_USE_USER_DATA
 
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
