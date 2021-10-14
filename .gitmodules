@@ -1,4 +1,6 @@
-[submodule "components/lvgl/lvgl"]
+[submodule "lvgl"]
 	path = components/lvgl/lvgl
 	url = https://github.com/littlevgl/lvgl.git
-
+[submodule "lib"]
+	path = main/lib
+	url = https://github.com/vanBassum/CPP_Library.git

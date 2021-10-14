@@ -7,7 +7,7 @@
     </CustomSourceDirectories>
     <AutoProgramSPIFFSPartition>true</AutoProgramSPIFFSPartition>
     <ProjectModeSettings>
-      <ProjectGUID>80c3ddec-b710-4c6c-9fa1-a52e0ba2d461</ProjectGUID>
+      <ProjectGUID>572c953d-5119-4f50-853b-2a7c81bea6f1</ProjectGUID>
       <GroupSourcesByTypes>true</GroupSourcesByTypes>
       <GroupSourcesByPaths>true</GroupSourcesByPaths>
       <HeaderScanMode>SourceDirs</HeaderScanMode>
@@ -60,7 +60,7 @@
       </ProjectItemSettings>
       <TargetSpecificSettings />
       <SetLDLibraryPathFromDependentArtifacts>true</SetLDLibraryPathFromDependentArtifacts>
-      <ProjectGUID>8af79c64-47da-4668-b935-8c204083ba42</ProjectGUID>
+      <ProjectGUID>061b9908-34cb-44ad-ac4c-80cd99a1bd80</ProjectGUID>
       <VirtualFolders />
       <ConfigurationNameCase>Upper</ConfigurationNameCase>
       <DefaultHeaderDiscoveryMode>HeaderDirectoryAndSubdirectories</DefaultHeaderDiscoveryMode>
