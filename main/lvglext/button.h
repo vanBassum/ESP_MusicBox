@@ -19,12 +19,12 @@ namespace LVGL
 	private:
 		static void Clicked(lv_obj_t * sender, lv_event_t event)
 		{
-			
-			ESP_LOGI("Test", "Plep");
-			
-			Button* btn = (Button*)sender->ptrObj;
-			if (btn->OnClick.IsBound())
-				btn->OnClick.Invoke(btn);
+			if (event == LV_EVENT_CLICKED) 
+			{
+				Button* btn = (Button*)sender->user_data;
+				if (btn->OnClick.IsBound())
+					btn->OnClick.Invoke(btn);
+			}
 		}
 		
 	public:
@@ -32,7 +32,7 @@ namespace LVGL
 		{
 			lvglMutex->Take();
 			handle = lv_btn_create(parent.GetHandle(), NULL);
-			handle->ptrObj = this;
+			handle->user_data = this;
 			lv_obj_set_pos(handle, 10, 10);  
 			lv_obj_set_size(handle, 120, 50);
 			lv_obj_set_event_cb(handle, &Button::Clicked);

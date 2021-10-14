@@ -1,6 +1,6 @@
 #pragma once
 
-#define LV_USE_USER_DATA
+#define CONFIG_LVGL_FEATURE_USE_USER_DATA
 
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
@@ -52,6 +52,12 @@ namespace LVGL
 		disp_drv.flush_cb = disp_driver_flush;
 		disp_drv.buffer = &disp_buf;
 		lv_disp_drv_register(&disp_drv);
+		
+		lv_indev_drv_t indev_drv;
+		lv_indev_drv_init(&indev_drv);
+		indev_drv.read_cb = touch_driver_read;
+		indev_drv.type = LV_INDEV_TYPE_POINTER;
+		lv_indev_drv_register(&indev_drv);
 			
 		guiTask = new FreeRTOS::Task("LVGL");
 		guiTask->Bind(&LVGL::GuiTask);
