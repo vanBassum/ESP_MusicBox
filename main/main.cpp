@@ -2,7 +2,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
-#include "display.h"
+#include "lvglext/lvgl.h"
 
 
 extern "C"{	
@@ -12,9 +12,11 @@ extern "C"{
 
 void app_main() 
 {
-    Display display;
 
-	//display.Test();
+	LVGL::Screen* screen = LVGL::Init();
+
+	LVGL::Button btn;
+	screen->AddControl(btn);
 
     while(1)
         vTaskDelay(1000);
