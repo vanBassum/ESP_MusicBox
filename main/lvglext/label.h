@@ -7,17 +7,16 @@
 
 namespace LVGL
 {
-	class Button : public Control
+	class Label : public Control
 	{
 		
 	protected:
 		virtual void Create(lv_obj_t* parent) override
 		{
 			lvglMutex->Take();
-			handle = lv_btn_create(parent, NULL);
-			lv_obj_set_pos(handle, 10, 10);  
-			lv_obj_set_size(handle, 120, 50);
-			lvglMutex->Give();
+			handle = lv_label_create(parent, NULL);
+			lv_label_set_text(handle, "Label");    
+			lvglMutex->Give(); 
 		}
 	};
 }

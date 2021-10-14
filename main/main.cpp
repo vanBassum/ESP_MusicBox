@@ -17,6 +17,10 @@ void app_main()
 
 	LVGL::Button btn;
 	screen->AddControl(btn);
+	
+	LVGL::Label label;
+	btn.AddControl(label);
+	
 
     while(1)
         vTaskDelay(1000);

@@ -3,9 +3,6 @@
 
 /* Littlevgl specific */
 #include "lvgl/lvgl.h"
-#include "lvgl_helpers.h"
-#include "lib/FreeRTOS.h"
-#include "esp_log.h"
 #include "control.h"
 
 namespace LVGL

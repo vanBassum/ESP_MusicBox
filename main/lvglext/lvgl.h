@@ -3,18 +3,18 @@
 
 #include "lvgl/lvgl.h"
 #include "lvgl_helpers.h"
-#include "lib/FreeRTOS.h"
+#include "../lib/FreeRTOS.h"
 #include "esp_log.h"
 
 #include "control.h"
 #include "screen.h"
 #include "button.h"
-
+#include "label.h"
 
 namespace LVGL
 {
 	
-	static FreeRTOS::Mutex* lvglMutex;
+
 	static FreeRTOS::Timer* tickTimer;
 	static FreeRTOS::Task* guiTask;
 		
