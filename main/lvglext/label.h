@@ -1,8 +1,9 @@
 #pragma once
 
-/* Littlevgl specific */
+
 #include "lvgl/lvgl.h"
 #include "control.h"
+
 
 
 namespace LVGL
@@ -10,13 +11,14 @@ namespace LVGL
 	class Label : public Control
 	{
 		
-	protected:
-		virtual void Create(lv_obj_t* parent) override
+	public:
+		Label(Control& parent)
 		{
 			lvglMutex->Take();
-			handle = lv_label_create(parent, NULL);
+			handle = lv_label_create(parent.handle, NULL);
 			lv_label_set_text(handle, "Label");    
-			lvglMutex->Give(); 
+			lv_obj_set_size(handle, 120, 50);
+			lvglMutex->Give();
 		}
 	};
 }

@@ -13,13 +13,11 @@ extern "C"{
 void app_main() 
 {
 
-	LVGL::Screen* screen = LVGL::Init();
+	LVGL::Screen screen = LVGL::Init();
 
-	LVGL::Button btn;
-	screen->AddControl(btn);
-	
-	LVGL::Label label;
-	btn.AddControl(label);
+	LVGL::Button btn(screen);	
+	LVGL::Label label(btn);
+
 	
 
     while(1)

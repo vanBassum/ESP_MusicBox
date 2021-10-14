@@ -9,12 +9,11 @@ namespace LVGL
 {
 	class Button : public Control
 	{
-		
-	protected:
-		virtual void Create(lv_obj_t* parent) override
+	public:
+		Button(Control& parent)
 		{
 			lvglMutex->Take();
-			handle = lv_btn_create(parent, NULL);
+			handle = lv_btn_create(parent.handle, NULL);
 			lv_obj_set_pos(handle, 10, 10);  
 			lv_obj_set_size(handle, 120, 50);
 			lvglMutex->Give();

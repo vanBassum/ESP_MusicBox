@@ -10,16 +10,12 @@ namespace LVGL
 	class Screen : public Control
 	{
 	public:
-		
-		virtual void Create(lv_obj_t* parent) override
-		{
-			//the only control that doenst need to be created.
-		}
 
-		Screen(lv_obj_t* h)
+		Screen()
 		{
-			this->handle = h;
-		}	
+			handle = lv_scr_act();
+		}
+		
 	};	
 }
 

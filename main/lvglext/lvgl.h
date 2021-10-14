@@ -14,7 +14,7 @@
 namespace LVGL
 {
 	
-
+	
 	static FreeRTOS::Timer* tickTimer;
 	static FreeRTOS::Task* guiTask;
 		
@@ -35,7 +35,7 @@ namespace LVGL
 	}
 		
 		
-	static Screen* Init()
+	static Screen& Init()
 	{
 		lvglMutex = new FreeRTOS::Mutex();
 		lv_init();
@@ -61,7 +61,7 @@ namespace LVGL
 		tickTimer->SetPeriod(10);
 		tickTimer->Start();
 
-		Screen* screen = new Screen(lv_scr_act());
-		return screen;
+		Screen* screen = new Screen();
+		return *screen;
 	}
 }
