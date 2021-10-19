@@ -7,26 +7,35 @@
 #include "lvgl/lvgl.h"
 
 
+
+
 extern "C"{	
 	void app_main();
 }
 
 
-void OnClick(LVGL::Button* btn)
+void OnClick(LVGL::Widget* btn, lv_event_t event)
 {
-	ESP_LOGI("Main", "BtnClicked");
+	if (event == LV_EVENT_PRESSED)
+		ESP_LOGI("Main", "LV_EVENT_PRESSED");
 }
 
 
 void app_main() 
 {
-
+	
+	
 	LVGL::Screen screen = LVGL::Init();
-
 	LVGL::Button btn(screen);	
 	LVGL::Label label(btn);
 	
-	btn.OnClick.Bind(&OnClick);
+	btn.SetSize(200, 100);
+	btn.SetPosition(50, 50);
+
+	
+	btn.SetCallback(&OnClick);
+	
+	//btn.OnPressed.Bind(&OnClick);
 
     while(1)
         vTaskDelay(1000);

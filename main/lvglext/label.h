@@ -8,11 +8,11 @@
 
 namespace LVGL
 {
-	class Label : public Control
+	class Label : public Widget
 	{
 		
 	public:
-		Label(Control& parent)
+		Label(Widget& parent)
 		{
 			lvglMutex->Take();
 			handle = lv_label_create(parent.GetHandle(), NULL);
@@ -20,5 +20,7 @@ namespace LVGL
 			lv_obj_set_size(handle, 120, 50);
 			lvglMutex->Give();
 		}
+		
+		
 	};
 }

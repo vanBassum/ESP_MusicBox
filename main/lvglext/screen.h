@@ -7,14 +7,14 @@
 
 namespace LVGL
 {
-	class Screen : public Control
+	class Screen : public Widget
 	{
 	public:
-
 		Screen()
 		{
 			handle = lv_scr_act();
 		}
+		
 		
 	};	
 }
