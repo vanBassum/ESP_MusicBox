@@ -3,7 +3,7 @@
 #include "../lib/FreeRTOS.h"
 #include "lvgl/lvgl.h"
 #include "esp_log.h"
-#include "events.h"
+#include "style.h"
 
 #define LVGL_GLOBAL_EVENT
 #define LVGL_SPECIFIC_EVENTS
@@ -78,6 +78,15 @@ namespace LVGL
 			lv_obj_set_size(handle, width, height);
 		}
 		
+		void AddStyle(Style& style)
+		{
+			lv_obj_add_style(handle, LV_BTN_PART_MAIN, style.GetHandle());
+		}
+		
+		
+		//Margins
+		//Allignment
+		//
 		
 		
 	};

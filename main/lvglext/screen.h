@@ -3,7 +3,7 @@
 
 /* Littlevgl specific */
 #include "lvgl/lvgl.h"
-#include "control.h"
+#include "widget.h"
 
 namespace LVGL
 {
@@ -15,6 +15,7 @@ namespace LVGL
 			handle = lv_scr_act();
 		}
 		
+		//Multiple screens
 		
 	};	
 }

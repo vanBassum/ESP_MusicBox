@@ -7,7 +7,7 @@
 #include "../lib/FreeRTOS.h"
 #include "esp_log.h"
 
-#include "control.h"
+#include "widget.h"
 #include "screen.h"
 #include "button.h"
 #include "label.h"

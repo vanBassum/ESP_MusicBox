@@ -1,8 +1,8 @@
 #pragma once
 
-
+#include <string>
 #include "lvgl/lvgl.h"
-#include "control.h"
+#include "widget.h"
 
 
 
@@ -21,6 +21,16 @@ namespace LVGL
 			lvglMutex->Give();
 		}
 		
+		void SetText(std::string text)
+		{
+			lv_label_set_text(handle, text.c_str());
+		}
+		
+		template<typename ...Args>
+		void SetText(std::string text, Args... args)
+		{
+			lv_label_set_text_fmt(handle, text.c_str(), args...);
+		}
 		
 	};
 }

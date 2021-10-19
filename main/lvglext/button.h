@@ -2,7 +2,7 @@
 
 /* Littlevgl specific */
 #include "lvgl/lvgl.h"
-#include "control.h"
+#include "widget.h"
 #include "../lib/Misc/Callback.h"
 
 
